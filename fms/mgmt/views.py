@@ -7,9 +7,23 @@ from django.contrib.auth.models import User, auth
 def home(request):
     return render(request, 'home.html')
 
+def income(request):
+        
+    return render(request,'income.html')
+def add(request):
+    
+    salary=int(request.POST["num1"])
+    others=int(request.POST["num2"])
+    Totalsalary=salary+others
+    return render(request, 'result.html',{'result':Totalsalary})
+
+        
+
+
 def login(request):
     if request.method=="POST":
         username=request.POST['username']
+
         password=request.POST['password']
         
         user=auth.authenticate(username=username,password=password)
