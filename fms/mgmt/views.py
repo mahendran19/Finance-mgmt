@@ -10,14 +10,20 @@ def home(request):
 def income(request):
         
     return render(request,'income.html')
+
 def add(request):
     
     salary=int(request.POST["num1"])
     others=int(request.POST["num2"])
     Totalsalary=salary+others
-    return render(request, 'result.html',{'result':Totalsalary})
+    return render(request, 'home.html',{'totalincome':Totalsalary})
+    return redirect('/')
+    
+    
 
-        
+def totalincomes(request):
+    return render(request, 'result.html',{'totalincome':Totalsalary})
+
 
 
 def login(request):
