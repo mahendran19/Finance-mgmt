@@ -5,12 +5,22 @@ from django.contrib.auth.models import User, auth
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request,'home1.html')
+
+def serial(request):
+    form= FormContact1(request.POST or None)
+    if form.is_valid():
+        form.save()
+    context= {'form': form }
+    return render(request, 'income.html', context)
 
 def income(request):
         
     return render(request,'income.html')
 
+def spendmoney(request):
+    
+    return render(request,'money.html')
 def add(request):
     
     salary=int(request.POST["num1"])
@@ -18,6 +28,18 @@ def add(request):
     Totalsalary=salary+others
     return render(request, 'home.html',{'totalincome':Totalsalary})
     return redirect('/')
+
+def formoney(request):
+    
+
+    food=int(request.POST["f"])
+    rent=int(request.POST["r"])
+    transport=int(request.POST["t"])
+    others=int(request.POST["o"])
+    totalspend=food+rent+transport+others    
+    return render(request,'home.html',{'spendingmoney':totalspend})
+        
+
     
     
 
