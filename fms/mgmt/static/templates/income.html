@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="add", method="POST">
+    {%csrf_token%}
+    from salary : <input type="text" name="salary"><br>
+    from others: <input type="text" name="others"><br>
+    <button type='submit'>submit</button>
+    </form>
+{% endblock %}

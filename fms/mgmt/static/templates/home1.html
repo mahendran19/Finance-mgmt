@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action=" ", method="POST">
+    {%csrf_token%}
+    <center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <nav class="main_nav">
+
+         <h Finance Management System></h>
+        <ul class="d-flex flex-row align-items-start justify-content-start">
+            
+
+
+            
+            {% if user.is_authenticated %}
+            <li> Hello, {{user.first_name}}</li>
+            <li> <a href="logout">logout</a></li>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <li> <h1> <a href="income"><img alt="Qries" src="static/assets/images/income.jpg"
+                width=150" height="70"></a></li> </h1>
+            <li><h1><a href="spendmoney"><img alt="Qries" src="static/assets/images/spend.jpg"
+                width=150" height="70"></a></a></li> </h1>
+            <li><h1> <a href="morespending"><img alt="Qries" src="static/assets/images/morespending.jpg"
+                width=150" height="70"></a></a></li> </h1>
+            
+            
+           
+
+            {% else %}
+            <li><a href="register"><h2>Register</h2></a></li>
+            <li><a href="login"><h2>Login</h2></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+   
+    
+{% endblock %}
