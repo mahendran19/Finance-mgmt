@@ -1,16 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from .forms import FormContactForm
+from .models import Income,Expense,User
+
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import ContactForm
-from .serializers import ContactFormSerializer
+
+
 import pickle
 
 # Create your views here.
 
 Totalsalary=0
+
+
+def newaddincome(request):
+    new_obj=Income(id=id,amount=amount,user=user,addedon=addedon)
+    new_obj.save()
+    return render(request, 'home.html')
+    
 
 def home(request):
     return render(request,'home1.html')
@@ -24,12 +33,9 @@ def add(request):
     Totalsalary=salary+others
    
 
-    form= FormContactForm(request.POST or None)
-          
-    if form.is_valid():
-        form.save()
     
-    return render(request, 'home.html',{'totalincome':Totalsalary,'form':form})
+    
+    return render(request, 'home.html',{'totalincome':Totalsalary})
     return redirect('/')
 
 def spendmoney(request):
@@ -53,6 +59,7 @@ def formoney(request):
     rent=int(request.POST['r'])
     transport=int(request.POST['t'] )
     others=int(request.POST['o'])
+    print(request.POST['food'])
     
     
     
@@ -65,8 +72,8 @@ def formoney(request):
     r=(rent/Totalsalary)*100
     t=(transport/Totalsalary)*100
     o=(others/Totalsalary)*100
-    form= FormContactForm(request.POST or None)
-    newfile = open("db_storage",'rb')
+    
+    
     
     return render(request,'home2.html',{'totalincome':Totalsalary,'spendingmoney':totalspend,'balance':BalanceRs,'f':f,'r':r,'t':t,'o':o})
 
@@ -130,23 +137,28 @@ def totalincomes(request):
 
 
 def login(request):
-    if request.method=="POST":
-        username=request.POST['username']
 
-        password=request.POST['password']
-        
-        user=auth.authenticate(username=username,password=password)
+    if request.method !="POST":
+        return render(request, 'login.html')
+    if 'username' not in request.POST and not request.POST['username']:
+        message.info(request, 'Username is required')
+        return redirect('login')
+    if 'password' not in request.POST and not request.POST['password']:
+        message.info (request,'Password is not Match')
+        return redirect('login')
 
-        if user is not None:
-            auth.login(request,user)
-            return redirect("/")
+    username=request.POST['username']
 
-        else:
-            messages.info(request,'invalid credentials')
-            return redirect('login')
-    else:
-        return render(request,'login.html')
+    password=request.POST['password']
+    
+    user=auth.authenticate(username=username,password=password)
 
+    if not user:
+        messages.info(request,'invalid credentials')
+        return redirect('login')
+    auth.login(request,user)
+    return redirect("/")
+  
 
 def register(request):
     if request.method=='POST':
@@ -204,17 +216,7 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
-@api_view(['GET'])
-def tasklist(request):
-    tasks=Task.objects.all()
-    serializer=ContactForm(tasks,many=True)
-    return Response(serializer.data)
 
 
 
-def serial(request):
-    form= FormContact1(request.POST or None)
-    if form.is_valid():
-        form.save()
-    context= {'form': form }
-    return render(request, 'income.html', context)
+
