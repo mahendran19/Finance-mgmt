@@ -12,27 +12,23 @@
     <div class="login-box">
     <img src="static/images/rs.jpg" class="rs">
         <h1>Registration</h1>
-            <form>
-            
-            <input type="text" name="first_name" placeholder="First Name">
-	    <input type="text" name="last_name" placeholder="Last Name">
-            <input type="text" name="username" placeholder="Username">
-            <input type="email" name="email" placeholder="email">
-            <input type="password" name="password1" placeholder="Enter Password">
-            <input type="password" name="password2" placeholder="Confirm Password"><br>
-		<br>
-            <input type="submit" name="submit" value="Register">
-                
-            </form>
-        
-        
-        </div>
-    
-    </body>
-</html>
+  
+  <form action="register" method="POST"> 
+        {%csrf_token%}
+
+        <input type="text" name="first_name" placeholder="First Name" required=""><br>
+        <input type="text" name="last_name" placeholder="Last Name" required=""><br>
+        <input type="text" name="username" placeholder="Username" required=""><br>
+        <input type="email" name="email" placeholder="email" required=""><br>
+        <input type="password" name="password1" placeholder="Password" required=""><br>
+        <input type="password" name="password2" placeholder="Confirm Password" required=""><br>
+        <input type="submit">
+
+    </form>
     <div>
+
         {% for message in messages %}
-        <h3>{{message}}</h3>
+        <h3 style="color:red"><b>{{message}}</h3></b>
         {% endfor %}
     </div>
 </body>

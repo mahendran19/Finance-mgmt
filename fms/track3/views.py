@@ -18,27 +18,28 @@ from django.core.exceptions import ValidationError
 # Create your views here.
 def register(request):
     global first_name
+    
     if request.method=='POST':        
-        first_name=request.POST['first_name']
-        last_name=request.POST['last_name']
-        username=request.POST['username']
-        password1=request.POST['password1']
-        password2=request.POST['password2']
-        email=request.POST['email']
+        first_name=request.POST["first_name"]
+        last_name=request.POST["last_name"]
+        username=request.POST["username"]
+        password1=request.POST["password1"]
+        password2=request.POST["password2"]
+        email=request.POST["email"]
 
-        form= FormRegister(request.POST or None)
-        if form.is_valid():
-            form.save()
-            form= FormIncome(request.POST or None)
+        #form= FormRegister(request.POST or None)
+        #if form.is_valid():
+         #   form.save()
+          #  form= FormIncome(request.POST or None)
 
         if password1==password2:
+            
             if User.objects.filter(username=username).exists():
-                messages.info(request,'username taken')
+                messages.info(request,'Username Already taken,Try with new one')
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
-                raise ValidationError('Email already taken')
-                messages.info(request,'Email already taken')
-                return render('register.html',messages)
+                messages.info(request,'Email already taken, Try with new one')
+                return redirect('register')
             else:
                 user = User.objects.create_user(username=username,password=password1,email=email,first_name=first_name,last_name=last_name)
                 user.save();
@@ -48,9 +49,8 @@ def register(request):
         else:
             
             messages.info(request,'password not matching')
-            context['messages']=('Password not matching....')
-           
-            return render('register.html',context)
+            
+            return redirect('register')
         return redirect('login')
     else:
             return render(request,'register.html')
