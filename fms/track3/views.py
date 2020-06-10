@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 from django.shortcuts import render
@@ -12,6 +13,7 @@ from django.contrib.auth.models import User, auth
 from .forms import FormIncome,FormExpense
 from .models import Income,Expense
 import pickle
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 def register(request):
@@ -34,8 +36,9 @@ def register(request):
                 messages.info(request,'username taken')
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
+                raise ValidationError('Email already taken')
                 messages.info(request,'Email already taken')
-                return redirect('register')
+                return render('register.html',messages)
             else:
                 user = User.objects.create_user(username=username,password=password1,email=email,first_name=first_name,last_name=last_name)
                 user.save();
@@ -43,8 +46,11 @@ def register(request):
                 return redirect('login')     
             
         else:
+            
             messages.info(request,'password not matching')
-            return redirect('register')
+            context['messages']=('Password not matching....')
+           
+            return render('register.html',context)
         return redirect('login')
     else:
             return render(request,'register.html')
@@ -253,8 +259,6 @@ def spendmoney(request):
 def login(request):
 
     
-
-
     if request.method !="POST":
         return render(request, 'login.html')
     if 'username' not in request.POST and not request.POST['username']:

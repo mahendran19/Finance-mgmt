@@ -1,5 +1,13 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Finance Management System </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home2.css' %}">
+    </head>
+    <body>
 
 <form action="formoney1", method="POST">
     {%csrf_token%}
@@ -26,7 +34,7 @@
             <br>
             
             <li> <h1> <a href="income">Income</a> -{{Total}}</li></form> 
-                <form action="addincome", method="POST"> 
+                <form action="income", method="POST"> 
                     {%csrf_token%}
             </h1><button type='submit'>Add</button></form> 
 
@@ -36,7 +44,7 @@
         </form>
 
 
-            <form action="spendmoney", method="POST"> 
+            <form action="addspending", method="POST"> 
                 {%csrf_token%}
             </h1><button type='submit'>Add</button> </form>
 
@@ -58,7 +66,5 @@
 
     
     </form>
-    
-    
-    
-{% endblock %}
+</body>
+</html>

@@ -1,23 +1,25 @@
-
-       <!DOCTYPE html>
-       <html lang="en">
-           <head>
-               <meta charset="UTF-8">
-               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-               <meta http-equiv="X-UA-Compatible" content="ie=edge">
-       <title> Finance</title>
-        </head>
-        <h1><center> Finance Management System </center> </h1>
-          <h2>Add spending Money</h2>
-        <body bgcolor="yellow">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Finance Management System </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/addspending.css' %}">
+    </head>
+    <body>
+        <div class="login-box">
+            <img src="static/images/rs.jpg" class="rs">
+                <h1>EXPENSE</h1>
             <form action="formoney", method="POST">
                 {% csrf_token %}
-                <pre>
-                    Expense:      <input type="number" name="expense"><br>
+                <input type="number" name="expense" required="">
                     
-                <button type='submit'>submit</button>
-                </pre>
-                </form>
-
-            </body>
-            </html>
+                    <input type="submit" name="submit" value="Submit">
+                       
+            </form>
+</div>
+    
+    
+</body>
+</html>

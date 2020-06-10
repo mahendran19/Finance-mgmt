@@ -1,5 +1,13 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Finance Management System </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home1.css' %}">
+    </head>
+    <body>
 
 <form action="formoney1", method="POST">
     {%csrf_token%}
@@ -58,4 +66,5 @@
 
     
     </form>
-{% endblock %}
+</body>
+</html>
