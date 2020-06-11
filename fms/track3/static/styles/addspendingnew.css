@@ -1,7 +1,7 @@
 body{
     margin: auto;
     padding: auto;
-    background: url(addspending.jpg);
+    background: url(registernew.jpg);
     background-size:cover;
     background-position: auto;
     font-family: sans-serif;
@@ -11,8 +11,8 @@ body{
     height: 420px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    top: 60%;
-    left: 60%;
+    top: 55%;
+    left: 70%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
@@ -32,12 +32,16 @@ h1{
     text-align: center;
     font-size: 22px;
 }
-
+.login-box p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
 .login-box input{
     width: 100%;
     margin-bottom: 20px;
 }
-.login-box input[type="number"],[type="number"],[type="number"],[type="number"]
+.login-box input[type="text"],[type="text"],[type="text"],[type="email"], input[type="password"],input[type="password"]
 {
     border: none;
     border-bottom: 1px solid #fff;

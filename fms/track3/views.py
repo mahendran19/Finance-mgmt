@@ -7,13 +7,17 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from .forms import FormIncome,FormExpense
 from .models import Income,Expense
+
 import pickle
+import pygal
 from django.core.exceptions import ValidationError
+import pygal
 
 # Create your views here.
 def register(request):
@@ -101,9 +105,15 @@ def home(request):
     return render(request,'home1.html',{'totalsalary':Totalsalary,'balance':Balance,'spendingmoney':spend})
 
 def income(request):
-          
     
-    return render(request,'income.html')
+    #data = {'Task' : 'Hours per Day', 'Work' : 11, 'Eat' : 2, 'Commute' : 2, 'Watching TV' : 2, 'Sleeping' : 7}
+	#print(data)
+    food=20
+    transport=30
+    rent=40
+    others=43
+
+    return render(request,'income.html',{'f':food,'t':transport,'r':rent,'o':others})
 
 def adding(request):
     
