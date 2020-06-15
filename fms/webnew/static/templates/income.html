@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Finance Management System </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/income.css' %}">
+    </head>
+    
+        <body>
+            <div class="login-box">
+                <img src="static/images/rs.jpg" class="rs">
+                    <h1>ADD INCOME</h1>
+            <form action="adding" method="post">
+                {% csrf_token %}
+                
+                    <input type="number" name="salary" value=0>
+                    
+                    <input type="submit" name="submit" value="Submit">
+                       
+            </form>
+           
+        </head>
+        
+            
+    
+</body>
+</html>

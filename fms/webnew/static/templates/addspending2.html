@@ -1,0 +1,26 @@
+
+       <!DOCTYPE html>
+       <html lang="en">
+           <head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <meta http-equiv="X-UA-Compatible" content="ie=edge">
+       <title> Finance</title>
+        </head>
+        <h1><center> Finance Management System </center> </h1>
+          <h2>Add spending Money</h2>
+        <body bgcolor="yellow">
+            <form action="formoney3", method="POST">
+                {% csrf_token %}
+                <pre>
+                    FOOD:      <input type="text" name="foodnew"><br>
+                    RENT:      <input type="text" name="rnew"><br>
+                    TRANSPORT: <input type="text" name="tnew"><br>
+                    OTHERS:    <input type="text" name="onew"><br>
+                
+                <button type='submit'>submit</button>
+                </pre>
+                </form>
+
+            </body>
+            </html>
