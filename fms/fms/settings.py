@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIR=os.path.join(BASE_DIR,"mgmt/static/templates")
+TEMPLATE_DIR=os.path.join(BASE_DIR,"webnew/static/templates")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -38,11 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app7',
-    'finance',
-    'mgmt',
-    'rest_framework'
+    'django.contrib.staticfiles',    
+    
+    'webnew',
+    
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -81,8 +82,8 @@ WSGI_APPLICATION = 'fms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'finance',
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': 'money',
         'USER': 'postgres',                                                         
         'PASSWORD':'1234',                                              
         'HOST': 'localhost',                                                    
